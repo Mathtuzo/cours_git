@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const txt_btn_achat = {
-        0: "Acheter en dématérialiser",
+        0: "Acheter en démat",
         1: "Acheter en physique",
         2: "Acheter en physique"
     }

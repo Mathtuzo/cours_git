@@ -90,15 +90,15 @@ nav ul li{
 }
 
 nav ul li:hover{
-  background-color: #c62424;
+  background-color: #eb8d8d;
   color: black;
 }
 
 .btn-play {
   background-color: #4b4b4b80;
   position: absolute;
-  top: 40%;
-  left: 50%;
+  top: 50%;
+  left: 70%;
   width: 80px;
   height: 80px;
   transform: translate(-50%, -50%);
