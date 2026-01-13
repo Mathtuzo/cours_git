@@ -1,0 +1,259 @@
+/* 
+Il est possible d'importer dans un fichier CSS un autre fichier CSS 
+ATTENTION ! Si vous importer des fichiers CSS dans un fichier CSS, cela doit être fait avant toute autre déclaration CSS (les commentaires ne sont pas concernés)
+*/
+/* ----------- Import de fichiers CSS ----------- */
+@import url('./UniversalSerif.css');
+
+
+/* ----------- Déclarations CSS générales ----------- */
+/* on surcharger le css natif du navigateur en utilisant :root  */
+/* on peut utiliser en CSS des variables, elle sont généralement (mais pas que) déclarées dans le :root et utilisées dans tout le CSS */
+/* Utiliser un :root, des variables, etc sert un adage du CSS : D.R.Y. = Don't Repeat Yourself */
+:root{
+    font-family: Arial, Helvetica, sans-serif;
+    --border-test : 0px solid black;
+    --default-font-size: 1.2rem; /* 16 x 1.2 = 19.4px */
+    font-size: var(--default-font-size);
+    --main-line-height: 1.7rem;
+    line-height: var(--main-line-height);
+    --heading-font-family: 'UniversalSerif';
+    --header-title-color: white;
+    --header-bg-color: #333333;
+    --main-nav-bg-color: var(--header-bg-color);
+    --footer-bg-color: var(--header-bg-color);
+    --main-site-color: #333333;
+    --main-site-bg-color: #F2F0D8;
+    --gutter: 0.5rem;
+    --h1-font-size: calc(2 * var(--default-font-size));
+}
+
+/* On va déclarer des comportements CSS pour TOUS LES ÉLÉMENTS de la page */
+*{
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4{
+    font-family: var(--heading-font-family);
+    letter-spacing: 0.1rem;
+    margin-top: 0;
+}
+
+h1{
+    color: var(--header-title-color);
+    margin: 0;
+    padding-top: calc( 2 * var(--gutter));
+    padding-bottom: calc( 2 * var(--gutter));
+    line-height: var(--h1-font-size);
+    font-size: var(--h1-font-size);
+}
+
+figure{
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #3333333f;
+}
+
+figcaption{
+    font-style: italic;
+    width: 100%;
+    padding: var(--gutter);
+}
+
+img{
+    max-width: 100%;
+}
+
+/* ----------- déclaration de classes CSS particulières ----------- */
+
+.video{
+    width: 100%;
+    position: relative;
+}
+
+.video > *{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.video-21-9{
+    padding-bottom: 42.85%;    
+}
+
+.video-16-9{
+    padding-bottom: 56.25%;    
+}
+
+.video-4-3{
+    padding-bottom: 75%;    
+}
+
+.video-1-1{
+    padding-bottom: 100%;    
+}
+
+figure.video{
+    margin: 0;
+}
+
+/* ----------- Déclaration CSS selon la strcuture HTML de la page ----------- */
+/* On règle le cas de la marge extérieure du body */
+body{
+    margin: 0;
+    color: var(--main-site-color);
+    background-color: var(--main-site-bg-color);
+}
+
+body > header,
+body > nav,
+body > footer{
+    background-color: var(--header-bg-color);
+    color: var(--header-title-color);
+    padding: var(--gutter);
+}
+
+body > header a,
+body > nav a,
+body > footer a{
+    color: var(--header-title-color);
+    display: block;
+    text-decoration: none;
+}
+
+section article{
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+}
+
+body > nav ul{
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+    padding: 0;
+}
+
+body > nav li:not(body > nav li:last-child){
+    border-bottom: 1px solid var(--header-title-color);
+}
+
+main > section > *:not(main > section#hero > *){
+    margin-top: var(--gutter);
+    margin-bottom: var(--gutter);
+}
+
+/* Les media queries permettent d'indique des comportement différents du css de base en surchargeant le css selon des facteur d'affichage */
+/* quand la largeur d'affichage atteint ou dépasse 576px mais reste inférieur au point de rupture suivant : 768 */
+@media screen and (min-width: 576px){
+    body > main,
+    body > header > *,
+    body > nav > *,
+    body > footer > *{
+        width: 540px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* quand la largeur d'affichage atteint ou dépasse 768px mais reste inférieur au point de rupture suivant : 992 */
+@media screen and (min-width: 768px){
+    body > main,
+    body > header > *,
+    body > nav > *,
+    body > footer > *{
+        width: 720px;
+    }
+
+    body > nav ul{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    body > nav ul a{
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    body > nav li:not(body > nav li:last-child){
+        border-bottom: unset;
+    }
+
+
+}
+
+/* quand la largeur d'affichage atteint ou dépasse 992px mais reste inférieur au point de rupture suivant : 1200 */
+@media screen and (min-width: 992px){
+    body > main,
+    body > header > *,
+    body > nav > *,
+    body > footer > *{
+        width: 960px;
+    }
+
+    /* Gérer la mise en colonne des articles dans les section mais pas la section hero */
+    main > section:not(main > section#hero){
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    main > section > *:not(main > section#hero > *){
+        width: calc( 50% - 2 * var(--gutter));
+    }
+
+}
+
+/* quand la largeur d'affichage atteint ou dépasse 1200px mais reste inférieur au point de rupture suivant : 1400 */
+@media screen and (min-width: 1200px){
+    body > main,
+    body > header > *,
+    body > nav > *,
+    body > footer > *{
+        width: 1140px;
+    }
+}
+
+/* quand la largeur d'affichage atteint ou dépasse 1400px mais reste inférieur au point de rupture suivant : 1600 */
+@media screen and (min-width: 1400px){
+    body > main,
+    body > header > *,
+    body > nav > *,
+    body > footer > *{
+        width: 1320px;
+    }
+
+    main > section > *:not(main > section#hero > *){
+        width: calc( 33.33% - 2 * var(--gutter));
+    }
+}
+
+/* quand la largeur d'affichage atteint ou dépasse 1600px */
+@media screen and (min-width: 1600px){
+    body > main,
+    body > header > *,
+    body > nav > *,
+    body > footer > *{
+        width: 1560px;
+    }
+}
+
+
+/* exemple quand on essaie d'imprimer la page, il est possible de ne pas afficher les élément qui ne servent pas lors d'une impression, comme la navigation, les iframe, etc. */
+@media print{
+    :root{
+        --header-bg-color: black;
+        --main-site-color: black;
+        --main-site-bg-color: #fff;
+    }
+
+    body > nav,
+    iframe, .video{
+        display: none;
+        height: 0;
+        padding: 0;
+    }
+}

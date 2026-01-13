@@ -1,0 +1,17 @@
+@import url('./tos-style.css');
+
+.test-viewport{
+    border: 1px solid black;
+    width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-banner{
+    width: 100vw;
+    height: calc(100vh - 3rem);
+    background: url('../images/sce-hero-2400.jpg');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

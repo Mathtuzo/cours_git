@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'UniversalSerif';
+    src: url('fonts/UniversalSerif.eot');
+    src: url('fonts/UniversalSerif.eot') format('embedded-opentype'),
+         url('fonts/UniversalSerif.woff2') format('woff2'),
+         url('fonts/UniversalSerif.woff') format('woff'),
+         url('fonts/UniversalSerif.ttf') format('truetype'),
+         url('fonts/UniversalSerif.svg#UniversalSerif') format('svg');
+}
